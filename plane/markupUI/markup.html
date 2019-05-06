@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, 
+        initial-scale=1.0, 
+        user-scalable=no" />
+  <title>Разметка плоскости</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+  <div id="outerContainer">
+    <div id="container">
+      <div>
+        <div class="item" id='one'></div>
+        <div class="item" id='three'></div>
+      </div>
+      <div>
+        <div class="item" id='two'></div>
+        <div class="item" id='four'></div>
+      </div>
+    </div>
+  </div>
+  <div class='coords'>
+    <div>
+      <span id='lt'>set top left corner on image above</span><br>World X:<input type="number" class="input" id="ltx" value="0"> World Y:<input type="number" class="input" id="lty" value="0">
+    </div>
+    <div>
+      <span id='rt'>set top right corner on image above</span><br>World X:<input type="number" class="input" id="rtx" value="1000"> World Y:<input type="number" class="input" id="rty" value="0">
+    </div>
+  </div>
+  <br>
+  <div class="coords">
+    <div>
+      <span id='lb'>set bottom left corner on image above</span><br>World X:<input type="number" class="input" id="lbx" value="0"> World Y:<input type="number" class="input" id="lby" value="1000"></div>
+    <div>
+      <span id='rb'>set bottom right corner on image above</span><br>World X:<input type="number" class="input" id="rbx" value="1000"> World Y:<input type="number" class="input" id="rby" value="1000">
+    </div>
+  </div>
+  <div class="coords">
+    <button onclick="sendCoords()">SEND</button>
+  </div>
+  <a id="downloadAnchorElem" style="display:none"></a>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>

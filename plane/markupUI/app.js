@@ -9,12 +9,22 @@ container.addEventListener("touchmove", drag, false);
 container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 container.addEventListener("mousemove", drag, false);
-var loadFile = function(event) {
-    var container = document.getElementById('container');
-    container.style.backgroundImage = 'url('+URL.createObjectURL(event.target.files[0])+')';
-}
-function dragStart(e) {
+let coords = {
+  world: {
+    lt: [0, 0],
+    rt: [0, 0],
+    lb: [0, 0],
+    lt: [0, 0]
+  },
+  screen: {
+    lt: [0, 0],
+    rt: [0, 0],
+    lb: [0, 0],
+    rb: [0, 0]
+  }
+};
 
+function dragStart(e) {
   if (e.target !== e.currentTarget) {
     active = true;
 
@@ -48,21 +58,25 @@ function dragEnd(e) {
     activeItem.initialY = activeItem.currentY;
     let rect = container.getBoundingClientRect();
     let circle = activeItem.getBoundingClientRect();
-    let x = Math.round(circle.left+5-rect.left);
-    let y = Math.round(circle.top+5-rect.top);
+    let x = Math.round(circle.left + 5 - rect.left);
+    let y = Math.round(circle.top + 5 - rect.top);
     let field = 'lt';
     switch (activeItem.id) {
       case 'one':
         field = 'lt';
+        coords.screen.lt = [x, y];
         break;
       case 'two':
         field = 'rt';
+        coords.screen.rt = [x, y];
         break;
       case 'three':
         field = 'lb';
+        coords.screen.lb = [x, y];
         break;
       case 'four':
         field = 'rb';
+        coords.screen.rb = [x, y];
     }
     document.querySelector('#' + field).textContent = 'Image X=' + x + '\n' + 'Image Y=' + y;
   }
@@ -92,4 +106,26 @@ function drag(e) {
 
 function setTranslate(xPos, yPos, el) {
   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+}
+
+function getval(name) {
+  return Number(document.getElementById(name).value);
+}
+
+function getWorldCoord(e) {
+  coords.world = {
+    lt: [getval("ltx"), getval("lty")],
+    rt: [getval("rtx"), getval("rty")],
+    lb: [getval("lbx"), getval("lby")],
+    rb: [getval("rbx"), getval("rby")]
+  };
+}
+
+function sendCoords(e) {
+  getWorldCoord();
+  var coordStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(coords));
+  var dlAnchorElem = document.getElementById('downloadAnchorElem');
+  dlAnchorElem.setAttribute("href", coordStr);
+  dlAnchorElem.setAttribute("download", "scene.json");
+  dlAnchorElem.click();
 }
