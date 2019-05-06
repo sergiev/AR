@@ -18,6 +18,6 @@ with open(cornerPath,'r') as cornersRaw:
 	world = np.float32([corners["world"][i] for i in ("lt","rt","lb","rb")])
 	screen = np.float32([corners["screen"][i] for i in ("lt","rt","lb","rb")])
 	M = cv.getPerspectiveTransform(screen,world)
-	dst = cv.warpPerspective(frame,M,(1000,1000))
+	dst = cv.warpPerspective(frame,M,tuple(screen[-1]))
 os.remove(cornerPath)
 cv.imwrite(root+'/media/planeProcessed.png',dst)
