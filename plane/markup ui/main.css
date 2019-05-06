@@ -1,0 +1,46 @@
+#container {
+    width: 800px;
+    height: 450px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 2px;
+    touch-action: none;
+    background-size: 100% auto;
+}
+
+.item {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(245, 230, 99);
+    border: 3px solid rgba(136, 136, 136, .5);
+    border-radius: 50%;
+    touch-action: none;
+    user-select: none;
+}
+
+.item:active {
+    background-color: rgba(168, 218, 220, 1.00);
+}
+
+.item:hover {
+    cursor: pointer;
+    background-color: rgb(205, 230, 99);
+}
+
+p,h1 {
+    text-align: center;
+}
+
+.coords{
+    display: flex;
+    justify-content: space-evenly;
+}
+.input{
+    width: 35px;
+}
