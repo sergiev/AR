@@ -5,7 +5,7 @@ import time
 import numpy as np
 root=os.path.dirname(os.path.abspath(__file__))
 dlPath='/home/s3/Загрузки'#change to /home/pavel/Desktop at production
-video = cv.VideoCapture(0)
+video = cv.VideoCapture(0)#change to 1 if attached
 ok, frame = video.read()
 frame=cv.resize(frame,(800,450))
 cv.imwrite(root+'/media/planeRaw.png',frame)
